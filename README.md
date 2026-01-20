@@ -5,9 +5,9 @@
 <img src="https://img.shields.io/badge/AI-LangChain4j-6DB33F?style=for-the-badge&logo=artificial-intelligence&logoColor=white" alt="LangChain4j"/>
 <img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="License"/>
 
-# 🚀 AI Lowcode Backend
+# 🚀 AI Lowcode
 
-### **用自然语言构建 Web 应用的智能后端服务**
+### **用自然语言构建 Web 应用**
 
 [![Star History Chart](https://img.shields.io/github/stars/your-username/ai-lowcode-back?style=social)](https://github.com/your-username/ai-lowcode-back)
 [![Forks](https://img.shields.io/github/forks/your-username/ai-lowcode-back?style=social)](https://github.com/your-username/ai-lowcode-back/network)
@@ -21,7 +21,7 @@
 
 ## ✨ 项目简介
 
-**AI Lowcode** 是一款革命性的低代码平台后端服务，通过深度融合 **大语言模型（LLM）** 能力，让用户能够使用**自然语言**快速生成生产级的 Web 应用代码。
+**AI Lowcode** 是一款低代码平台，通过深度融合 **LLM** 能力，让用户能够使用**自然语言**快速生成生产级的 Web 应用代码。
 
 ### 🎯 设计理念
 
@@ -159,7 +159,6 @@ graph LR
 <div align="center">
 
 <img src="https://img.shields.io/badge/Hutool-5.8.38-ff6b6b?style=flat-square" alt="Hutool"/>
-<img src="https://img.shields.io/badge/Lombok-1.18.36-c81c2d?style=flat-square" alt="Lombok"/>
 <img src="https://img.shields.io/badge/Knife4j-4.4.0-00E676?style=flat-square" alt="Knife4j"/>
 <img src="https://img.shields.io/badge/Prometheus-Monitoring-E6522C?style=flat-square&logo=prometheus&logoColor=white" alt="Prometheus"/>
 <img src="https://img.shields.io/badge/Grafana-Dashboard-F46800?style=flat-square&logo=grafana&logoColor=white" alt="Grafana"/>
@@ -244,14 +243,6 @@ mvn clean install -DskipTests
 # 启动
 mvn spring-boot:run
 ```
-
-#### 6️⃣ 访问服务
-
-| 服务 | 地址 |
-|:---|:---|
-| API 端点 | http://localhost:8123/api |
-| API 文档 | http://localhost:8123/api/doc.html |
-| 健康检查 | http://localhost:8123/api/actuator/health |
 
 ---
 
@@ -553,44 +544,101 @@ graph TB
 
 ---
 
-## ❓ 常见问题
+## 💡 项目思考
+
+### 🤔 **为什么要做这个项目？**
 
 <details>
-<summary><b>Q: 支持哪些 AI 模型？</b></summary>
+<summary><b>项目背景与价值</b></summary>
 
-任何兼容 OpenAI API 格式的模型，包括但不限于：
-- OpenAI (GPT-4, GPT-4-turbo)
-- Anthropic (Claude 3)
-- DeepSeek (deepseek-chat, deepseek-coder)
-- 阿里云 (通义千问)
-- 百度 (文心一言)
+**降低开发门槛， democratize software development**
+
+1. **行业痛点**：
+   - 传统软件开发需要专业的编程技能
+   - 小企业和个人开发者难以承担高昂的开发成本
+   - 产品迭代周期长，响应市场慢
+
+2. **解决方案**：
+   - 通过自然语言描述即可生成生产级代码
+   - 支持多种前端框架（HTML、多文件、Vue）
+   - 将开发效率提升10倍以上
+
+3. **商业价值**：
+   - 帮助非技术人员快速构建应用原型
+   - 为中小企业提供数字化转型工具
+   - 减少对昂贵开发团队的依赖
 
 </details>
 
+### 🚧 **项目的难点在哪？**
+
 <details>
-<summary><b>Q: 如何修改生成代码的存储路径？</b></summary>
+<summary><b>技术挑战与突破</b></summary>
 
-修改 `application.yaml` 中的配置：
+**1. AI 模型的可靠性与准确性**
+- **挑战**：大语言模型可能生成不完整或有错误的代码
+- **解决方案**：
+  - 实现多轮对话和上下文记忆
+  - 添加 Guardrail 机制进行输入输出校验
+  - 支持多种生成模式，提高成功率
 
-```yaml
-app:
-  code:
-    output-dir: /your/custom/path
-```
+**2. 代码质量与工程化**
+- **挑战**：生成代码需要符合工程标准
+- **解决方案**：
+  - 设计代码解析器（CodeParser）和保存器（CodeFileSaver）
+  - 实现模板化的项目构建流程
+  - 支持Vue工程化项目生成
+
+**3. 系统性能与稳定性**
+- **挑战**：AI服务调用耗时长，需要支持高并发
+- **解决方案**：
+  - 基于Reactor实现流式响应，实时展现生成过程
+  - Redis分布式限流，保护系统稳定性
+  - Prometheus监控体系，实时追踪性能指标
+
+**4. 多模型兼容性**
+- **挑战**：不同AI厂商API差异大
+- **解决方案**：
+  - 基于LangChain4j实现统一接口
+  - 支持OpenAI、Claude、DeepSeek等多种模型
+  - 可扩展的模型接入机制
 
 </details>
 
-<details>
-<summary><b>Q: 如何禁用限流？</b></summary>
-
-移除接口上的 `@RateLimit` 注解即可。
-
-</details>
+### 📚 **通过这个项目能学习到什么？**
 
 <details>
-<summary><b>Q: 支持分布式部署吗？</b></summary>
+<summary><b>技术收获与成长</b></summary>
 
-支持。系统使用 Redis 实现分布式 Session 和限流，可直接部署多个实例。
+**1. 架构设计能力**
+- **微服务架构**：分层设计，高内聚低耦合
+- **设计模式**：门面模式、工厂模式、策略模式、模板方法
+- **可扩展性**：插件化的代码生成引擎
+
+**2. AI应用开发**
+- **LangChain4j框架**：大语言模型应用开发
+- **提示词工程**：设计有效的AI提示词
+- **模型监控**：追踪AI模型的使用情况、Token消耗、响应时间
+
+**3. 高并发与性能优化**
+- **响应式编程**：Spring WebFlux + Reactor
+- **分布式缓存**：Redis Session存储、限流、对话记忆
+- **性能监控**：Prometheus + Grafana监控体系
+
+**4. 工程化实践**
+- **代码质量**：遵循阿里巴巴Java开发规范
+- **测试驱动**：单元测试覆盖核心逻辑
+- **CI/CD**：自动化构建与部署
+
+**5. 业务理解能力**
+- **用户需求分析**：理解非技术用户的真实需求
+- **产品设计**：平衡技术可行性与用户体验
+- **技术选型**：根据场景选择合适的技术栈
+
+**6. 项目管理**
+- **敏捷开发**：快速迭代，持续交付
+- **技术调研**：调研多种AI模型的优缺点
+- **风险控制**：限流、监控、降级策略
 
 </details>
 
