@@ -535,14 +535,6 @@ graph TB
 
 ---
 
-### 代码规范
-
-- 遵循 [Alibaba Java Coding Guidelines](https://github.com/alibaba/p3c)
-- 使用 UTF-8 编码
-- 必须添加单元测试
-- 更新相关文档
-
----
 
 ## 💡 项目思考
 
@@ -643,6 +635,13 @@ graph TB
 </details>
 
 ---
+### 代码规范
+
+- 遵循 [Alibaba Java Coding Guidelines](https://github.com/alibaba/p3c)
+- 使用 UTF-8 编码
+- 必须添加单元测试
+- 更新相关文档
+---
 ### Commit 规范
 
 遵循 [Conventional Commits](https://www.conventionalcommits.org/) 规范：
@@ -654,12 +653,12 @@ graph TB
 - `refactor:` 代码重构
 - `test:` 测试相关
 - `chore:` 构建/工具相关
-
+---
 ### 📄 许可证
 
 本项目采用 [MIT](LICENSE) 许可证开源。
 
-
+---
 <div align="center">
 
 
@@ -671,6 +670,6 @@ graph TB
 
 **如果这个项目对你有帮助，请给一个 Star ⭐**
 
-Made with ❤️ by [Your Name]
+Made with ❤️ by [ApprenticeDyc](https://github.com/apprenticedyc)
 
 </div>
