@@ -1,0 +1,107 @@
+@startuml 对话记忆时序图
+
+title AI 低代码平台 - 对话记忆方法调用时序图
+
+skinparam backgroundColor #FEFEFE
+skinparam shadowing false
+
+actor 用户
+participant "AppServiceImpl" as App
+participant "AiCodeGeneratorServiceFactory" as Factory
+participant "Caffeine Cache" as Cache
+participant "ChatHistoryService" as History
+participant "MessageWindowChatMemory" as Memory
+database "MySQL" as DB
+participant "Redis" as Redis
+
+== 首次对话（Cache Miss） ==
+
+用户 -> App: chatToGenCode(appId, message)
+activate App
+
+App -> Factory: getAiCodeGeneratorService(appId)
+activate Factory
+
+Factory -> Cache: cache.get(appId)
+Cache --> Factory: null (Cache Miss)
+
+Factory -> History: loadChatHistoryToMemory()
+activate History
+
+History -> DB: SELECT 最近 20 条历史
+DB --> History: 历史记录
+
+History -> Memory: chatMemory.add() (循环添加)
+activate Memory
+Memory -> Redis: 自动同步到 Redis
+activate Redis
+Redis --> Memory: OK
+deactivate Redis
+deactivate Memory
+
+History --> Factory: 完成
+deactivate History
+
+Factory -> Cache: cache.put(appId, aiService)
+Factory --> App: AiCodeGeneratorService
+deactivate Factory
+
+App -> DB: INSERT 用户消息
+activate DB
+deactivate DB
+
+App -> Memory: AI 对话
+activate Memory
+Memory -> Redis: GET/SET (框架自动处理)
+activate Redis
+Redis --> Memory: 历史上下文 + 新对话
+deactivate Redis
+Memory --> App: AI 响应
+deactivate Memory
+
+App -> DB: INSERT AI 响应
+activate DB
+deactivate DB
+
+deactivate App
+
+App --> 用户: 返回流式代码
+
+
+== 后续对话（Cache Hit） ==
+
+用户 -> App: chatToGenCode(appId, message)
+activate App
+
+App -> Factory: getAiCodeGeneratorService(appId)
+activate Factory
+
+Factory -> Cache: cache.get(appId)
+Cache --> Factory: AiCodeGeneratorService (命中)
+
+Factory --> App: 返回缓存实例
+deactivate Factory
+
+App -> DB: INSERT 用户消息
+activate DB
+deactivate DB
+
+
+App -> Memory: AI 对话
+activate Memory
+Memory -> Redis: GET/SET (框架自动处理)
+activate Redis
+Redis --> Memory: 历史上下文 + 新对话
+deactivate Redis
+Memory --> App: AI 响应
+deactivate Memory
+
+App -> DB: INSERT AI 响应
+activate DB
+deactivate DB
+
+deactivate App
+
+App --> 用户: 返回流式代码
+
+@enduml

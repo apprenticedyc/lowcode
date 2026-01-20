@@ -1,0 +1,53 @@
+@startuml 应用部署核心流程
+
+  start
+
+  :POST /app/deploy;
+
+  :生成 deployKey;
+  note right
+    6位随机字符串 (例: a3b9c2)
+  end note
+
+  :构建源目录路径;
+  note right
+    CODE_OUTPUT_ROOT_DIR/{codeGenType}_{appId}
+    例: tmp/multi_file_123/
+  end note
+
+  :构建部署目录路径;
+  note right
+    CODE_DEPLOY_ROOT_DIR/{deployKey}
+    例: static_deploy/a3b9c2/
+  end note
+
+  :复制文件;
+  note right
+    FileUtil.copyContent(源目录, 部署目录)
+  end note
+
+  :更新数据库;
+  note right
+    保存 deployKey, deployedTime
+  end note
+
+  :返回部署 URL;
+  note right
+    http://localhost:8123/api/static/a3b9c2
+  end note
+
+  :用户通过 URL 访问;
+  note right
+    浏览器请求 http://localhost/{deployKey}
+  end note
+
+  :Nginx 静态资源服务器处理;
+  note right
+    监听80端口
+    将 /{deployKey}/* 映射到
+    CODE_DEPLOY_ROOT_DIR/{deployKey}/*
+  end note
+
+  stop
+
+  @enduml

@@ -1,0 +1,26 @@
+# 本地开发配置模板
+# 请复制为 application-local.yaml 并填入你的实际配置
+# 注意：不要将此文件或包含真实配置的 application-local.yaml 提交到版本控制
+
+spring:
+  datasource:
+    username: ${DB_USERNAME:root}          # 从环境变量读取，默认 root
+    password: ${DB_PASSWORD:}             # 从环境变量读取，必须设置
+  redis:
+    host: ${REDIS_HOST:localhost}
+    port: ${REDIS_PORT:6379}
+    password: ${REDIS_PASSWORD:}          # 从环境变量读取
+
+# AI 模型配置 - 从环境变量读取敏感信息
+langchain4j:
+  open-ai:
+    chat-model:
+      base-url: ${AI_BASE_URL:https://api.deepseek.com}
+      api-key: ${AI_API_KEY:}              # 从环境变量读取，必须设置
+      model-name: ${AI_MODEL_NAME:deepseek-chat}
+      max-tokens: ${AI_MAX_TOKENS:8192}
+    streaming-chat-model:
+      base-url: ${AI_BASE_URL:https://api.deepseek.com}
+      api-key: ${AI_API_KEY:}              # 从环境变量读取，必须设置
+      model-name: ${AI_MODEL_NAME:deepseek-chat}
+      max-tokens: ${AI_MAX_TOKENS:8192}
