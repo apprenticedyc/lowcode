@@ -1,4 +1,3 @@
-HELP.md
 target/
 .mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
@@ -77,3 +76,7 @@ Thumbs.db
 # Cache directories
 .cache/
 node_modules/
+
+# Project documentation files to ignore
+CLAUDE.md
+development-setup.md
