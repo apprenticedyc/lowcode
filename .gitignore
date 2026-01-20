@@ -80,3 +80,6 @@ node_modules/
 # Project documentation files to ignore
 CLAUDE.md
 development-setup.md
+
+# Claude IDE configuration
+.claude/
