@@ -7,10 +7,10 @@ import com.hex.ailowcode.exception.ErrorCode;
 import com.hex.ailowcode.model.enums.CodeGenTypeEnum;
 
 /**
- * HTML代码文件保存器
+ * 模板方法模式子类 -- HTML代码文件保存器
  *
  */
-public class HtmlCodeFileSaverTemplate extends CodeFileSaverTemplate<HtmlCodeResult> {
+public class HtmlCodeFileSaver extends CodeFileSaverTemplate<HtmlCodeResult> {
 
     @Override
     protected CodeGenTypeEnum getCodeType() {

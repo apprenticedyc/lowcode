@@ -1,15 +1,50 @@
 @startuml
-'https://plantuml.com/sequence-diagram
+title Core 包设计模式架构图
 
-autonumber
+skinparam classAttributeIconSize 0
+skinparam shadowing false
 
-== Initialization ==
+package "门面模式" {
+    class AiCodeGeneratorFacade
+}
 
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
+package "策略模式 + 执行器模式" {
+    interface CodeParser
+    class HtmlCodeParser
+    class MultiFileCodeParser
+    class CodeParserExecutor
+}
 
-== Repetition ==
+package "模板方法模式 + 执行器模式" {
+    abstract class CodeFileSaverTemplate
+    class HtmlCodeFileSaver
+    class MultiFileCodeFileSaver
+    class CodeFileSaverExecutor
+}
 
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
+' 策略模式：接口实现
+CodeParser <|.. HtmlCodeParser : <<策略实现>>
+CodeParser <|.. MultiFileCodeParser : <<策略实现>>
+
+' 模板方法模式：继承
+CodeFileSaverTemplate <|-- HtmlCodeFileSaver : <<模板继承>>
+CodeFileSaverTemplate <|-- MultiFileCodeFileSaver : <<模板继承>>
+
+' 门面依赖
+AiCodeGeneratorFacade ..> CodeParserExecutor : <<门面调用>>
+AiCodeGeneratorFacade ..> CodeFileSaverExecutor : <<门面调用>>
+
+' 执行器分发
+CodeParserExecutor ..> HtmlCodeParser : <<策略选择>>
+CodeParserExecutor ..> MultiFileCodeParser : <<策略选择>>
+CodeFileSaverExecutor ..> HtmlCodeFileSaver : <<策略选择>>
+CodeFileSaverExecutor ..> MultiFileCodeFileSaver : <<策略选择>>
+
+legend right
+  |= 箭头类型 |= 设计模式 |
+  | <|.. | 策略模式 (接口实现) |
+  | <|-- | 模板方法模式 (继承) |
+  | ..> | 门面/执行器调用 |
+endlegend
+
 @enduml

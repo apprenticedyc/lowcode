@@ -1,4 +1,4 @@
-package com.hex.ailowcode.model.dto;
+package com.hex.ailowcode.model.dto.user;
 
 import lombok.Data;
 

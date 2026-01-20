@@ -9,28 +9,22 @@ import com.hex.ailowcode.constant.UserConstant;
 import com.hex.ailowcode.exception.BusinessException;
 import com.hex.ailowcode.exception.ErrorCode;
 import com.hex.ailowcode.exception.ThrowUtils;
-import com.hex.ailowcode.model.dto.UserLoginRequest;
-import com.hex.ailowcode.model.dto.UserQueryRequest;
-import com.hex.ailowcode.model.dto.UserRegisterRequest;
-import com.hex.ailowcode.model.dto.UserUpdateRequest;
+import com.hex.ailowcode.model.dto.user.UserLoginRequest;
+import com.hex.ailowcode.model.dto.user.UserQueryRequest;
+import com.hex.ailowcode.model.dto.user.UserRegisterRequest;
+import com.hex.ailowcode.model.dto.user.UserUpdateRequest;
 import com.hex.ailowcode.model.vo.LoginUserVO;
 import com.hex.ailowcode.model.vo.UserVO;
 import com.mybatisflex.core.paginate.Page;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.beans.factory.annotation.Autowired;
 import com.hex.ailowcode.model.entity.User;
 import com.hex.ailowcode.service.UserService;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 /**
  * 用户 控制层。
