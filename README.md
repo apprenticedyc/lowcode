@@ -9,9 +9,9 @@
 
 ### **用自然语言构建 Web 应用**
 
-[![Star History Chart](https://img.shields.io/github/stars/your-username/ai-lowcode-back?style=social)](https://github.com/your-username/ai-lowcode-back)
-[![Forks](https://img.shields.io/github/forks/your-username/ai-lowcode-back?style=social)](https://github.com/your-username/ai-lowcode-back/network)
-[![Issues](https://img.shields.io/github/issues/your-username/ai-lowcode-back)](https://github.com/your-username/ai-lowcode-back/issues)
+[![Star History Chart](https://img.shields.io/github/stars/apprenticedyc/lowcode?style=social)](https://github.com/apprenticedyc/lowcode)
+[![Forks](https://img.shields.io/github/forks/apprenticedyc/lowcode?style=social)](https://github.com/apprenticedyc/lowcode/network)
+[![Issues](https://img.shields.io/github/issues/apprenticedyc/lowcode)](https://github.com/apprenticedyc/lowcode/issues)
 
 [功能特性](#-核心功能) • [快速开始](#-快速开始) • [技术架构](#-技术架构) • [API文档](#-api文档) • [贡献指南](#-贡献指南)
 
@@ -186,7 +186,7 @@ graph LR
 #### 1️⃣ 克隆仓库
 
 ```bash
-git clone https://github.com/your-username/ai-lowcode-back.git
+git clone https://github.com/apprenticedyc/lowcode.git
 cd ai-lowcode-back
 ```
 
@@ -665,7 +665,7 @@ graph TB
 
 ## ⭐ Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=your-username/ai-lowcode-back&type=Date)](https://star-history.com/#your-username/ai-lowcode-back&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=apprenticedyc/lowcode&type=Date)](https://star-history.com/#apprenticedyc/lowcode&Date)
 
 ---
 
